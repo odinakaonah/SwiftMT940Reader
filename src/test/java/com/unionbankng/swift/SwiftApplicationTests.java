@@ -53,6 +53,7 @@ public class SwiftApplicationTests {
 
     @Test
     public void loadFolder() {
+        System.out.println("Testing POLL SCM in jenkins");
         readerService.out();
     }
 
