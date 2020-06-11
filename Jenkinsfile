@@ -2,14 +2,20 @@ pipeline {
    agent any
 
    stages {
-      stage('Hello') {
+      stage('Verify Branch') {
          steps {
-            echo 'Hello World from Jenkinsfile'
+            echo '$GIT_BRANCH'
          }
       }
-      stage('Welcome') {
+      stage('Docker Build') {
          steps {
-            echo "You're welcome to my Jenkins Tutorial from jenkinsfile on github"
+            pwsh(script:'docker image -a')
+            pwsh(script: """
+            docker build .
+            docker image -a
+
+            cd ..
+            """)
          }
       }
 
